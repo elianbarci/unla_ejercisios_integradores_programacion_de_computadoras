@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1545082668 source:c:\users\elian\desktop\ejercicios integradores 1\factorial_numero_recursivo\main.c
+	<stdio.h>
+	<stdlib.h>
+
