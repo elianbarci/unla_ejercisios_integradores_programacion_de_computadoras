@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 /*
 
@@ -11,9 +12,8 @@ localidades
 
 */
 
-void leer_archivo (FILE* archivo, int* matriz)
+void leer_archivo (FILE* archivo)
 {
-    int localidad, mes;
     char lectura[100];
     fgets(lectura,100,archivo);
     while(!feof(archivo))
@@ -23,9 +23,9 @@ void leer_archivo (FILE* archivo, int* matriz)
     }
 }
 
-void elegir_opcion(int* matriz)
+void elegir_opcion(int *mes, int *localidad)
 {
-    int localidad=0,mes=0;
+    int milimetros = 0;
     char aux;
     printf("\nBienvenido usuario, espero que se encuentre bien\n");
     printf("\nQue mes desea elegir?\n");
@@ -33,87 +33,78 @@ void elegir_opcion(int* matriz)
     printf("\n      A de Adrogue, lugar conocido porque vivio Borges");
     printf("\n      M de Marmol\n");
     printf("\n      S de salir");
-    printf("\n\n    Basta de chachara elija una opcion YA: ");
+    printf("\n\nBasta de chachara elija una opcion YA: ");
     scanf("%s", &aux);
+    fflush(stdin);
 
     switch(aux)
     {
     case 'T':
-        localidad == 1;
-        printf("\n Excelente decision!");
-        mes == elegir_mes();
-        printf("\n Cuanto llovio en Temperley en el mes %d", mes);
-        cuanto_llovio(matriz, localidad, mes);
+        *localidad = 1;
+        printf("\n    Excelente decision!\n");
+        *mes = elegir_mes(mes);
+        printf("\n          Procesando pedido de cuanto llovio en Temperley que es la localidad %d en el mes %d: ", *localidad, *mes);
+
         break;
     case 'A':
-        localidad = 2;
-        printf("\n Yo tambien respeto mucho al maestro");
+        *localidad = 2;
+        printf("\n\n    Yo tambien respeto mucho al maestro");
         mes = elegir_mes();
-        printf("\n Cuanto llovio en Adrogue en el mes %d", mes);
-        get(matriz[localidad][mes]);
+        printf("\n          Procesando pedido de cuanto llovio en Adrogue que es la localidad %d en el mes %d: ", *localidad, *mes);
         break;
     case 'M':
-        localidad = 3;
-        printf("\n Haga lo que usted quiera!");
+        *localidad = 3;
+        printf("\n\n    Haga lo que usted quiera!");
         mes = elegir_mes();
-        printf("\n Cuanto llovio en Marmol en el mes %d", mes);
-        get(matriz[localidad][mes]);
+        printf("\n          Procesando pedido de cuanto llovio en Marmol que es la localidad %d en el mes %d", *localidad, *mes);
         break;
     case 'S':
+
         return 0;
+
     default:
+
         printf("\nACASO ES USTED IMBECIL...\n");
-        elegir_opcion();
+        elegir_opcion(mes, localidad);
 
     }
 
 
 }
 
-int elegir_mes()
+int elegir_mes(int * mes)
 {
-    int mes;
-    printf(" \nEn que mes desea trabajar, elegir numero del uno al doce ");
+    printf("\nEn que mes desea trabajar, elegir numero del 1 al 12: ");
     scanf("%d", &mes);
+    fflush(stdin);
     return mes;
 }
 
-void cuanto_llovio(int* matriz, int localidad, int mes)
-{
-    double aux;
-    bool siono;
-    for(int i = 0; i<localidad; i++ )
-    {
-        for(int j = 0; j<mes; j++)
-        {
-            aux = aux + matriz[localidad][mes];
-        }
-    }
-    printf("\nDurante el año llovio un total de %d", aux);
-    printf("\nDesea cargar un dia de lluvia mas?");
-    scanf("%b", &siono);
-    if(siono = true)
-    {
-        elegir_opcion();
-    }
-    else
-    {
-        return 0;
-    }
-}
+
 
 int main()
 {
-    int matriz[3][12];
-    FILE* archivo;
-    char* nombrearchivo = "titulo.txt";
-    archivo = fopen(nombrearchivo, "r");
+    bool johny;
+    int matriz[3][12];  //Se crea una matriz 3 localidades, y 12 meses
+    int mes, localidad, milimetros;
+    FILE* archivo;      //Se crea el puntero al archivo
+    char* nombrearchivo = "titulo.txt"; //Se crea el puntero al nombre del archivo
+    archivo = fopen(nombrearchivo, "r");    //Se abre el archivo en modo solo lectura
+    /* Esto solo esta para que lea el archivo de los graficos ASCII*/
 
+    leer_archivo(archivo);  //Se llama a la funcion leer archivo que va a el el .txt del titulo ASCII
+    elegir_opcion(&mes, &localidad);  //Se llama a la función elegir opcion
 
+    printf("\n\nCuantos milimetros ---->  ");
+    scanf("%d", &milimetros);
+    fflush(stdin);
+    matriz[localidad][mes] = milimetros;
+    printf("\nLocalidad cargada: %d", localidad);
+    printf("\nMes cargados: %d ", mes);
+    printf("\nMilimetros cargados: %d", matriz[localidad][mes]);
+    printf("\nDesea cargar otra fecha en alguna otra localidad --->");
+    scanf("%b", &johny);
 
-
-    leer_archivo(archivo);
-    elegir_opcion(matriz);
 
 
 
@@ -121,3 +112,17 @@ int main()
 
     return 0;
 }
+
+
+/*
+https://lambda.inf.ucv.cl/funprog/apuntes/U3_5_Punteros_Y_Funciones.html
+
+Puntero: un puntero es un tipo de dato que representa las direcciones de memoria que
+apuntan a una variable específica. Cada puntero apunta a un tipo de dato específico.
+O al revés, cada tipo de dato tiene un puntero como tipo de dato asociado. Cuando hablamos
+de puntero nos referimos a cualquier puntero en general. Pero en el código, siempre debemos
+hablar de puntero a..., y especificar a qué tipo de dato está asociada la dirección de memoria
+almacenada en el puntero.
+
+
+*/
