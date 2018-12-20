@@ -1,5 +1,11 @@
 # depslib dependency file v1.0
-1545089123 source:c:\users\elian\desktop\ejercicios integradores 1\ejercisio_integrador_8\main.c
+1545264945 source:c:\users\elian\desktop\ejercicios integradores 1\ejercisio_integrador_8\main.c
 	<stdio.h>
 	<stdlib.h>
+	<stdbool.h>
+
+1545143983 source:c:\users\bliblioteca\desktop\unla_ejercisios_integradores_programacion_de_computadoras-master\unla_ejercisios_integradores_programacion_de_computadoras-master\ejercisio_integrador_8\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
 
