@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1545348601 source:c:\users\bliblioteca\desktop\unla_ejercisios_integradores_programacion_de_computadoras-master\ejercicio_integrador_4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
