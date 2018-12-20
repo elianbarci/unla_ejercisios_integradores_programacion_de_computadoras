@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1545290959 source:c:\users\elian\desktop\ejercicios integradores 1\ejercicios_integrador_10\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<string.h>
+
